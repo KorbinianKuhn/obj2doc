@@ -1,0 +1,40 @@
+{
+  "name": "obj2doc",
+  "version": "0.0.0",
+  "description": "Parse json or javascript objects to an API documentation format.",
+  "main": "index.js",
+  "private": false,
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha \"./test/**/*.spec.js\"",
+    "coverage": "nyc --reporter=html mocha \"./test/**/*.spec.js\"",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KorbinianKuhn/obj2doc.git"
+  },
+  "keywords": [],
+  "author": "Korbinian Kuhn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KorbinianKuhn/obj2doc/issues"
+  },
+  "homepage": "https://github.com/KorbinianKuhn/obj2doc#readme",
+  "dependencies": {
+    "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.0",
+    "mocha": "^5.0.0",
+    "nyc": "^11.4.1",
+    "should": "^13.2.1",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "raml2html": "^6.7.0",
+    "raml2html-material-theme": "^0.1.2"
+  }
+}

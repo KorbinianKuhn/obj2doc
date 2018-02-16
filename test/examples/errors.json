@@ -1,0 +1,24 @@
+{
+  "400": {
+    "description": "Bad Request",
+    "body": {
+      "application/json": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name to identify the error"
+          },
+          "message": {
+            "type": "string",
+            "description": "Short message describing the error"
+          }
+        },
+        "example": {
+          "name": "bad_request",
+          "message": "The request is wrong."
+        }
+      }
+    }
+  }
+}

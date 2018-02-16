@@ -1,0 +1,60 @@
+[{
+  "uri": "/users/:userid/posts/:postid",
+  "method": "put",
+  "description": "Update a post of user",
+  "request": {
+    "uriParameters": {
+      "userid": {
+        "required": true,
+        "description": "ID of user"
+      },
+      "postid": {
+        "required": true,
+        "description": "ID of post"
+      }
+    },
+    "body": {
+      "application/json": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "required": true
+          },
+          "category": {
+            "type": "string",
+            "enum": ["food", "cars", "sports"]
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "queryParameters": {
+      "deleted": {
+        "type": "boolean",
+        "description": "List deleted users only",
+        "required": false,
+        "example": true
+      },
+      "searchterm": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  "response": {
+    "200": {
+      "description": "All users",
+      "body": {
+        "application/json": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}]

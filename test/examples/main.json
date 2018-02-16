@@ -1,0 +1,6 @@
+{
+  "title": "Automatic RAML",
+  "version": "v1",
+  "baseUri": "https://api.example.com/{version}",
+  "mediaType": "application/json"
+}
