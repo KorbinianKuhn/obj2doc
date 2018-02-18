@@ -1,3 +1,10 @@
 const raml = require('./raml');
 
-exports.obj2doc = (object, options = {}) => raml.create(object, options);
+exports.obj2doc = (object, options = {}) => {
+  switch(options.type) {
+    case 'raml':
+      return raml.create(object, options);
+    default:
+      throw new Error('Documentation type is not supported.');
+  }
+}

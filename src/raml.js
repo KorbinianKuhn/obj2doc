@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const formatter = require('./formatter');
 
 const RAML_SIMPLE_KEYS = ['description', 'required', 'minLength', 'maxLength', 'type', 'array', 'pattern', 'minimum', 'maximum'];
@@ -39,7 +38,7 @@ const routesToString = (routes) => {
       if (route.request.body) string += createBlock(2, 'body', route.request.body);
     }
 
-    if (route.response && _.keys(route.response).length > 0) {
+    if (route.response && Object.keys(route.response).length > 0) {
       string += createBlock(2, 'responses', route.response);
     }
 
@@ -49,9 +48,10 @@ const routesToString = (routes) => {
 };
 
 const uri = (string) => {
-  let params = _.compact(string.split('/'));
+  let params = string.split('/');
+  params.shift();
   params = params.map((o) => {
-    if (_.startsWith(o, ':')) {
+    if (o.startsWith(':')) {
       return `{${o.replace(':', '')}}`;
     }
     return o;
@@ -61,7 +61,7 @@ const uri = (string) => {
 
 const createBlock = (tabs, name, parameters) => {
   let string = '';
-  if (parameters && _.keys(parameters).length > 0) {
+  if (parameters && Object.keys(parameters).length > 0) {
     string += headerLine(tabs, name);
     for (const param in parameters) {
       string += createType(tabs+1, param, parameters[param]);
