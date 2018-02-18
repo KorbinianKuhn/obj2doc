@@ -14,7 +14,16 @@
     "type": "git",
     "url": "git+https://github.com/KorbinianKuhn/obj2doc.git"
   },
-  "keywords": [],
+  "keywords": [
+    "documentation",
+    "raml",
+    "object",
+    "obj2doc",
+    "converter",
+    "conversion",
+    "parse",
+    "api"
+  ],
   "author": "Korbinian Kuhn",
   "license": "MIT",
   "bugs": {

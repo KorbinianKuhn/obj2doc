@@ -32,6 +32,8 @@ $ git clone https://github.com/KorbinianKuhn/obj2doc
 ## Getting started
 
 ``` javascript
+const obj2doc = require('@korbiniankuhn/obj2doc');
+
 obj2doc(object, { type: 'raml' });
 // return raml string
 ```
