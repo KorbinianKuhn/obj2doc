@@ -3,59 +3,63 @@ title: Automatic RAML
 version: v1
 baseUri: https://api.example.com/{version}
 mediaType: application/json
-
-/users/{userid}/posts/{postid}:
-  put:
-    description: Update a post of user
-    uriParameters:
-      userid:
-        required: true
-        description: ID of user
-      postid:
-        required: true
-        description: ID of post
-    queryParameters:
-      deleted:
-        type: boolean
-        description: List deleted users only
-        example: |
-          true
-      searchterm:
-        type: string
-    body:
-      application/json:
-        type: object
-        properties:
-          title:
-            type: string
-            required: true
-          category:
-            type: string
-            enum: [food, cars, sports]
-          images:
-            type: array
-            items:
+/users:
+  /{userid}:
+    /posts:
+      /{postid}:
+        put:
+          description: Update a post of user
+          uriParameters:
+            userid:
+              required: true
+              description: ID of user
+            postid:
+              required: true
+              description: ID of post
+          queryParameters:
+            deleted:
+              type: boolean
+              description: List deleted users only
+              required: false
+              example: |
+                true
+            searchterm:
               type: string
-    responses:
-      200:
-        description: All users
-        body:
-          application/json:
-            type: object
-      400:
-        description: Bad Request
-        body:
-          application/json:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name to identify the error
-              message:
-                type: string
-                description: Short message describing the error
-            example: |
-              {
-                "name": "bad_request",
-                "message": "The request is wrong."
-              }
+              required: false
+          body:
+            application/json:
+              type: object
+              properties:
+                title:
+                  type: string
+                  required: true
+                category:
+                  type: string
+                  enum: [food, cars, sports]
+                images:
+                  type: array
+                  items:
+                    type: string
+          responses:
+            200:
+              description: All users
+              body:
+                application/json:
+                  type: object
+            400:
+              description: Bad Request
+              body:
+                application/json:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Name to identify the error
+                    message:
+                      type: string
+                      description: Short message describing the error
+                  example: |
+                    {
+                      "name": "bad_request",
+                      "message": "The request is wrong."
+                    }

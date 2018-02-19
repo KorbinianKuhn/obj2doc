@@ -9,7 +9,7 @@ const example = _.assign({
 
 for (const route of routes) {
   const object = _.cloneDeep(route);
-  _.assign(object.response, _.cloneDeep(errors));
+  _.assign(object.responses, _.cloneDeep(errors));
   example.routes.push(object);
 }
 

@@ -1,10 +1,11 @@
 const formatter = require('./formatter');
+const _ = require('lodash');
 
 const RAML_SIMPLE_KEYS = ['description', 'required', 'minLength', 'maxLength', 'type', 'array', 'pattern', 'minimum', 'maximum'];
 const RAML_INDENT_KEYS = ['body', 'application/json'];
 
 const line = (tabs, key, value, required = false) => {
-  if (value) {
+  if (!_.isNil(value)) {
     return formatter.line(`${key}: ${value}`, tabs);
   } else if (required) {
     return formatter.line(`${key}:`);
@@ -23,28 +24,21 @@ const header = (object) => {
   return string;
 };
 
-const routesToString = (routes) => {
-  let all = '';
-  for (const route of routes) {
-    let string = '\n';
+const routeToString = (tabs, route) => {
+  let string = '';
 
-    string += headerLine(0, uri(route.uri));
-    string += headerLine(1, route.method);
-    string += line(2, 'description', route.description, true);
+  string += headerLine(tabs+0, route.method);
+  string += line(tabs+1, 'description', route.description, false);
 
-    if (route.request) {
-      if (route.request.uriParameters) string += createBlock(2, 'uriParameters', route.request.uriParameters);
-      if (route.request.queryParameters) string += createBlock(2, 'queryParameters', route.request.queryParameters);
-      if (route.request.body) string += createBlock(2, 'body', route.request.body);
-    }
+  if (route.uriParameters) string += createBlock(tabs+1, 'uriParameters', route.uriParameters);
+  if (route.queryParameters) string += createBlock(tabs+1, 'queryParameters', route.queryParameters);
+  if (route.body) string += createBlock(tabs+1, 'body', route.body);
 
-    if (route.response && Object.keys(route.response).length > 0) {
-      string += createBlock(2, 'responses', route.response);
-    }
-
-    all += string;
+  if (route.responses && Object.keys(route.responses).length > 0) {
+    string += createBlock(tabs+1, 'responses', route.responses);
   }
-  return all;
+
+  return string;
 };
 
 const uri = (string) => {
@@ -102,10 +96,44 @@ const createExample = (tabs, name, object) => {
   return string;
 };
 
+const groupRoutes = (routes) => {
+  const grouped = {};
+  for (const route of routes) {
+    const uristring = uri(route.uri);
+    let temp = uristring.split('/');
+    temp.shift();
+    temp = temp.map(o => `/${o}`);
+    const path = `${temp.join('.')}.endpoints`;
+    const endpoints = _.get(grouped, path, []);
+    delete (route.uri);
+    endpoints.push(route);
+    _.set(grouped, path, endpoints);
+  }
+
+  return grouped;
+};
+
+const groupToString = (tabs, group) => {
+  let string = '';
+  for (const key in group) {
+    if (key === 'endpoints') {
+      for (const endpoint of group.endpoints) {
+        string += routeToString(tabs, endpoint);
+      }
+    } else {
+      string += headerLine(tabs, key);
+      string += groupToString(tabs+1, group[key]);
+    }
+  }
+  return string;
+};
 const create = (object, options) => {
   let string = header(object);
 
-  string += routesToString(object.routes);
+  if (object.routes) {
+    const routes = groupRoutes(object.routes);
+    string += groupToString(0, routes);
+  }
 
   return string;
 };
