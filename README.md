@@ -1,5 +1,7 @@
 # obj2doc
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/KorbinianKuhn/obj2doc.svg)](https://greenkeeper.io/)
+
 [![Travis](https://img.shields.io/travis/KorbinianKuhn/obj2doc.svg?style=flat-square)](https://travis-ci.org/KorbinianKuhn/obj2doc/builds)
 [![Coverage](http://img.shields.io/coveralls/KorbinianKuhn/obj2doc.svg?style=flat-square&branch=master)](https://coveralls.io/r/KorbinianKuhn/obj2doc)
 [![Known Vulnerabilities](https://snyk.io/test/github/KorbinianKuhn/obj2doc/badge.svg?style=flat-square)](https://snyk.io/test/github/KorbinianKuhn/obj2doc)
