@@ -3,9 +3,12 @@ const main = require('./examples/main.json');
 const errors = require('./examples/errors.json');
 const routes = require('./examples/routes.json');
 
-const example = _.assign({
-  routes: []
-}, main);
+const example = _.assign(
+  {
+    routes: []
+  },
+  main
+);
 
 for (const route of routes) {
   const object = _.cloneDeep(route);

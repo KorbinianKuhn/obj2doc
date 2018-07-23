@@ -2,7 +2,10 @@ coverage
 example
 test
 .travis.yml
-.editorconfig
+.prettierrc
 temp
 .nyc-output
 .vscode
+.gitignore
+.eslintrc
+README.md
