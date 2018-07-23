@@ -1,6 +1,6 @@
 {
   "name": "@korbiniankuhn/obj2doc",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Parse json or javascript objects to an API documentation format.",
   "main": "index.js",
   "private": false,
