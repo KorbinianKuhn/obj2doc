@@ -7,7 +7,6 @@
 [![Dev Dependencies](https://img.shields.io/david/dev/KorbinianKuhn/obj2doc.svg?style=flat-square)](https://david-dm.org/KorbinianKuhn/obj2doc)
 [![npm](https://img.shields.io/npm/dt/@korbiniankuhn/obj2doc.svg?style=flat-square)](https://www.npmjs.com/package/@korbiniankuhn/obj2doc)
 [![npm-version](https://img.shields.io/npm/v/@korbiniankuhn/obj2doc.svg?style=flat-square)](https://www.npmjs.com/package/@korbiniankuhn/obj2doc)
-[![Greenkeeper badge](https://badges.greenkeeper.io/KorbinianKuhn/obj2doc.svg?style=flat-square)](https://greenkeeper.io/)
 ![license](https://img.shields.io/github/license/KorbinianKuhn/obj2doc.svg?style=flat-square)
 
 
