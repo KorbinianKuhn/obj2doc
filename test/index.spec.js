@@ -21,8 +21,8 @@ describe('obj2doc()', () => {
   });
 
   it('should build correct raml string', () => {
-    const actual = obj2doc(utils.example, { type: 'raml' });
+    const actual = obj2doc(utils.example, { type: 'raml' }).toString();
     const expected = fs.readFileSync('test/examples/raml/full.raml').toString();
-    expect(actual).toEqual(expected);
+    expect(actual.replace(/\s/g, '')).toEqual(expected.replace(/\s/g, ''));
   });
 });
